@@ -3,6 +3,7 @@ import { useTimer } from "react-timer-hook"
 import { Button } from "@/components/ui/button"
 import { GoEye } from "react-icons/go"
 import { useEffect, useState } from "react"
+import { ModeToggle } from "../theme-toggle"
 export const Timer = () => {
 	const minute = 60
 	const hour = minute * 60
@@ -60,7 +61,10 @@ export const Timer = () => {
 							Pause
 						</Button>
 					)}
-					<Button disabled={isRunning} className='size-20' onClick={resume}>
+					<Button
+						disabled={isRunning}
+						className='size-20'
+						onClick={resume}>
 						Resume
 					</Button>
 					<Button
@@ -70,7 +74,10 @@ export const Timer = () => {
 						}}>
 						Restart
 					</Button>
-					<Button className='size-20' variant={"destructive"} onClick={() => setTotalTime(0)}>
+					<Button
+						className='size-20'
+						variant={"destructive"}
+						onClick={() => setTotalTime(0)}>
 						Reset
 					</Button>
 				</div>
@@ -79,12 +86,18 @@ export const Timer = () => {
 						<p>Minute</p>
 						<Button
 							variant={"outline"}
-							onClick={() => setTotalTime(prev => prev + minute)}>
+							onClick={() =>
+								setTotalTime((prev) => prev + minute)
+							}>
 							+
 						</Button>
 						<Button
 							variant={"outline"}
-							onClick={() => setTotalTime(prev => Math.max(0, prev - minute))}>
+							onClick={() =>
+								setTotalTime((prev) =>
+									Math.max(0, prev - minute)
+								)
+							}>
 							-
 						</Button>
 					</div>
@@ -92,12 +105,14 @@ export const Timer = () => {
 						<p>Hour</p>
 						<Button
 							variant={"outline"}
-							onClick={() => setTotalTime(prev => prev + hour)}>
+							onClick={() => setTotalTime((prev) => prev + hour)}>
 							+
 						</Button>
 						<Button
 							variant={"outline"}
-							onClick={() => setTotalTime(prev => Math.max(0, prev - hour))}>
+							onClick={() =>
+								setTotalTime((prev) => Math.max(0, prev - hour))
+							}>
 							-
 						</Button>
 					</div>
@@ -105,20 +120,24 @@ export const Timer = () => {
 						<p>Day</p>
 						<Button
 							variant={"outline"}
-							onClick={() => setTotalTime(prev => prev + day)}>
+							onClick={() => setTotalTime((prev) => prev + day)}>
 							+
 						</Button>
 						<Button
 							variant={"outline"}
-							onClick={() => setTotalTime(prev => Math.max(0, prev - day))}>
+							onClick={() =>
+								setTotalTime((prev) => Math.max(0, prev - day))
+							}>
 							-
 						</Button>
 					</div>
-					
 				</div>
 			</div>
-			<div className='fixed bottom-0 p-5 w-full flex items-center justify-center'>
-				<GoEye onClick={() => setHide(!hide)} size={30} />
+			<div className='fixed bottom-0 p-5 w-full flex gap-5 items-center justify-center'>
+				<Button onClick={() => setHide(!hide)} variant={"outline"}>
+					<GoEye />
+				</Button>
+				{!hide && <ModeToggle />}
 			</div>
 		</div>
 	)
